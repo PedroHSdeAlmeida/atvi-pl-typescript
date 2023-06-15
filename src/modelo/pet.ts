@@ -1,18 +1,34 @@
 export default class Pet {
+    private static contadorInstancias: number = 0;
+    public idPet: number
     private nome: string
     private tipo: string
     private raca: string
-    private genero: string
+    private sexo: string
+  
 
-    constructor(nome: string, raca: string, genero: string, tipo: string) {
+    constructor(nome: string, raca: string, sexo: string, tipo: string) {
+        Pet.contadorInstancias++;
+        this.idPet = Pet.contadorInstancias;
         this.nome = nome
         this.raca = raca
-        this.genero = genero
+        this.sexo = sexo
         this.tipo = tipo
     }
 
-    public get getNome(){return this.nome}
-    public get getRaca(){return this.raca}
-    public get getGenero(){return this.genero}
-    public get getTipo(){return this.tipo}
+    public get getId() {
+        return this.idPet
+    }
+    public get getNome() {
+        return this.nome
+    }
+    public get getRaca() {
+        return this.raca
+    }
+    public get getSexo() {
+        return this.sexo
+    }
+    public get getTipo() {
+        return this.tipo
+    }
 }

@@ -3,6 +3,8 @@
     import CPF from "../modelo/cpf";
     import Cadastro from "./cadastro";
     import VerificadorDuplicidadeCPF from "./trataCpf";
+    import Pet from "../modelo/pet";
+    import CadastroPet from "./cadastroPet";
 
     export default class CadastroCliente extends Cadastro {
         private clientes: Array<Cliente>;
@@ -28,18 +30,33 @@
             let dia = new Number(partesData[0].valueOf()).valueOf();
             let dataEmissao = new Date(ano, mes, dia);
             let cpf = new CPF(valor, dataEmissao);
-            let cliente = new Cliente(nome, nomeSocial, cpf);
-
             if (this.verificadorCPF.verificaCpf(cpf.getValor, this.clientes)) {
-                console.log(`CPF já cadastrado. Não é possível cadastrar o cliente.`);
-                return;
-              }              
-            else {
-                this.clientes.push(cliente);
-                console.log(`${cpf.getValor}`)
-                console.log(`${this.clientes}`)
+                console.log(`\nCPF já cadastrado. Não é possível cadastrar o cliente.`);
+                return ;
+                }   
 
-                console.log(`\nCadastro concluído :)\n`);
-            }
+            let cadastroPet = new CadastroPet()
+            let pets : Array<Pet> = []
+            console.log(`\nDeseja cadastrar um pet? `)
+            console.log(`\n1 - Para sim`);
+            console.log(`2 - para não`);
+            let r = 0
+            while (r !== 2) {
+                r = this.entrada.receberNumero(`Por favor, digite uma opção: `);
+                switch (r) {
+                    case 1:
+                    cadastroPet.cadastraPet(pets)
+                    console.log('deseja cadastrar outro pet?')
+                    console.log(`1 - Para sim`);
+                    console.log(`2 - para não`);
+                    case 2:
+                        break
+                    default: 
+                        console.log(`Operação não entendida :(`)
+                }
+            }        
+            let cliente = new Cliente(nome, nomeSocial, cpf, pets);
+            this.clientes.push(cliente);
+            console.log(`\nCadastro concluído :)\n`);
         }
     }
