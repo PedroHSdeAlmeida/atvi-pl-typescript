@@ -1,4 +1,6 @@
     import Entrada from "../io/entrada";
+    import Telefone from "../modelo/telefone";
+    import {CadastroTelefone} from "./cadastroTelefone";
     import Cliente from "../modelo/cliente";
     import CPF from "../modelo/cpf";
     import Cadastro from "./cadastro";
@@ -35,6 +37,32 @@
                 return ;
                 }   
 
+            //Telefone
+
+            let cadastroTelefone = new CadastroTelefone()
+            let telefones : Array<Telefone> = []
+            console.log(`\nDeseja cadastrar um telefone? `)
+            console.log(`\n1 - Para sim`);
+            console.log(`2 - para não`);
+            let t = 0;
+            while (t !== 2) {
+                t = this.entrada.receberNumero(`Por favor, digite uma opção: `);
+                switch (t) {
+                    case 1:
+                        cadastroTelefone.cadastraTelefone(telefones);
+                        console.log('\nDeseja cadastrar outro telefone?');
+                        console.log(`1 - Para sim`);
+                        console.log(`2 - para não`);
+                        break;
+                    case 2:
+                        break;
+                    default:
+                        console.log(`Operação não entendida :(`);
+                }
+            }
+
+            //Pet
+
             let cadastroPet = new CadastroPet()
             let pets : Array<Pet> = []
             console.log(`\nDeseja cadastrar um pet? `)
@@ -55,7 +83,7 @@
                         console.log(`Operação não entendida :(`)
                 }
             }        
-            let cliente = new Cliente(nome, nomeSocial, cpf, pets);
+            let cliente = new Cliente(nome, nomeSocial, cpf, pets, telefones);
             this.clientes.push(cliente);
             console.log(`\nCadastro concluído :)\n`);
         }

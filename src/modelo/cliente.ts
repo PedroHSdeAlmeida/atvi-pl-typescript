@@ -15,7 +15,7 @@ export default class Cliente {
     private produtosConsumidos: Array<Produto>
     private servicosConsumidos: Array<Servico>
     private pets: Array<Pet>
-    constructor(nome: string, nomeSocial: string, cpf: CPF, pets: Pet[]) {
+    constructor(nome: string, nomeSocial: string, cpf: CPF, pets: Pet[], telefones: Telefone[]) {
         this.nome = nome
         this.nomeSocial = nomeSocial
         this.cpf = cpf
@@ -25,6 +25,7 @@ export default class Cliente {
         this.produtosConsumidos = []
         this.servicosConsumidos = []
         this.pets = pets
+        this.telefones = telefones
     }
     public get getCpf(): CPF {
         return this.cpf

@@ -15,12 +15,25 @@ export default class ListagemClientes extends Listagem {
             console.log(`\nNome: ` + cliente.nome);
             console.log(`Nome social: ` + cliente.nomeSocial);
             console.log(`CPF: ` + cliente.getCpf.getValor);
+
+            //telefones
+
+            console.log(`Telefones: `)
+            if (cliente.getTelefones.length === 0) {
+                console.log (`Não possui telefones cadastrados`)
+            }
+            cliente.getTelefones.forEach(telefone => {
+                console.log(`ddd:` + telefone.getDdd)
+                console.log(`ddd:` + telefone.getNumero)
+            })
+
+            //pets
+
             console.log(`\nPets do cliente:`);
 
             if (cliente.getPets.length === 0) {
-                console.log (`Não possui pets cadastrados`)
+                console.log (`\nNão possui pets cadastrados`)
             }
-
             cliente.getPets.forEach(pet => {
                 console.log(`\nId do pet: ` + pet.getId)
                 console.log(` Nome: ` + pet.getNome);
