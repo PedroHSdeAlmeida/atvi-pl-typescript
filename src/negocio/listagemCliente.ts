@@ -27,6 +27,17 @@ export default class ListagemClientes extends Listagem {
                 console.log(`ddd:` + telefone.getNumero)
             })
 
+            //Rgs
+
+            console.log(`\nRgs do cliente:`);
+
+            if (cliente.getRgs.length === 0) {
+                console.log (`\nNão possui rgs cadastrados`)
+            }
+            cliente.getRgs.forEach(rg => {
+                console.log(`\n Rg: ` + rg.getValor);
+            });
+
             //pets
 
             console.log(`\nPets do cliente:`);
@@ -35,14 +46,13 @@ export default class ListagemClientes extends Listagem {
                 console.log (`\nNão possui pets cadastrados`)
             }
             cliente.getPets.forEach(pet => {
-                console.log(`\nId do pet: ` + pet.getId)
+                console.log(`\n Id do pet: ` + pet.getId)
                 console.log(` Nome: ` + pet.getNome);
                 console.log(` Tipo: ` + pet.getTipo);
                 console.log(` Raça: ` + pet.getRaca);
                 console.log(` Sexo: ` + pet.getSexo);
             });
 
-            //console.log(`numero de pets do cliente: ` + cliente.getPets.length)
             console.log(`--------------------------------------`);
         });
         console.log(`\n`);
