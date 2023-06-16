@@ -48,4 +48,10 @@ export default class Cliente {
     public get getPets(): Array<Pet>{
         return this.pets
     }
+    public setNome(nome: string): void {
+        this.nome = nome;
+    }
+    public setNomeSocial(nomeSocial: string): void {
+        this.nomeSocial = nomeSocial;
+    }
 }
