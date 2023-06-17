@@ -14,7 +14,7 @@ let execucao = true
 
 while (execucao) {
     console.log(`Opções:`);
-    console.log(`1 - Cadastrar cliente`);
+    console.log(`1 - Cadastrar cliente `);
     console.log(`2 - Listar todos os clientes`);
     console.log(`3 - Atualizar/deletar dados do cliente (Nome, nome soocial, telefones, pets ou Rgs)`);
     console.log(`4 - cadastrar produto`);
