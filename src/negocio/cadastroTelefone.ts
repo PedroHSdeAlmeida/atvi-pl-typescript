@@ -1,7 +1,7 @@
 import Entrada from "../io/entrada";
 import Telefone from "../modelo/telefone";
 
-export class CadastroTelefone {
+export default class CadastroTelefone {
   private entrada: Entrada;
 
   constructor() {

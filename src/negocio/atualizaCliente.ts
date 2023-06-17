@@ -5,7 +5,8 @@ import CadastroRg from "./cadastroRg";
 import CadastroPet from "./cadastroPet";
 import Pet from "../modelo/pet";
 import RG from "../modelo/rg";
-
+import CadastroTelefone from "./cadastroTelefone";
+import Telefone from "../modelo/telefone";
 
 export default class AtualizaCliente extends Atualizar{
     private clientes: Array<Cliente>;
@@ -140,7 +141,7 @@ export default class AtualizaCliente extends Atualizar{
 
                         case 5:
                             console.log(`1 - Adicionar um ou mais rgs`)
-                            console.log(`2 - Remover um ou mais rgs`)
+                            console.log(`2 - Remover um rg`)
                             let resp = this.entrada.receberNumero('Por favor, digite uma opção: ')
                             if (resp === 1){
                                 let cadastroRg = new CadastroRg()
@@ -198,7 +199,7 @@ export default class AtualizaCliente extends Atualizar{
                         case 6:
 
                         console.log(`1 - Adicionar um ou mais pets`)
-                            console.log(`2 - Remover um ou mais pets`)
+                            console.log(`2 - Remover um pet`)
                             let asw = this.entrada.receberNumero('Por favor, digite uma opção: ')
                             if (asw === 1){
                                 let cadastroPet = new CadastroPet()
@@ -257,6 +258,67 @@ export default class AtualizaCliente extends Atualizar{
                                   }
                     
                             }
+
+                        case 7:
+
+                        console.log(`1 - Adicionar um ou mais telefones`)
+                        console.log(`2 - Remover um telefone`)
+                        let ro = this.entrada.receberNumero('Por favor, digite uma opção: ')
+                        if (ro === 1){
+                            let cadastroTelefone = new CadastroTelefone()
+                            let telefones : Array<Telefone> = cliente.getTelefones
+                            console.log(`\nDeseja cadastrar um telefone? `)
+                            console.log(`\n1 - Para sim`);
+                            console.log(`2 - para não`);
+                            let t = 0;
+                            while (t !== 2) {
+                                t = this.entrada.receberNumero(`Por favor, digite uma opção: `);
+                                switch (t) {
+                                    case 1:
+                                        cadastroTelefone.cadastraTelefone(telefones);
+                                        console.log('\nDeseja cadastrar outro telefone?');
+                                        console.log(`\n1 - Para sim`);
+                                        console.log(`2 - para não`);
+                                        break;
+                                    case 2:
+                                        break;
+                                    default:
+                                        console.log(`Operação não entendida :(`);
+                                }
+                            }
+                        }
+                        else if (ro === 2) {
+                            console.log(`\nTelefones do cliente:`);
+                            if (cliente.getTelefones.length === 0) {
+                                console.log (`\nNão possui telefones cadastrados`)
+                                break
+                            }
+                            cliente.getTelefones.forEach(telefone => {
+                                console.log(`\n ddd: ` + telefone.getDdd)
+                                console.log(` Numero: ` + telefone.getNumero);
+                            });
+                              let numTel = this.entrada.receberTexto(
+                                `Informe o numero de telefone que deseja remover: `
+                              );
+                              const pegaTel = cliente.getTelefones.findIndex(
+                                (telefone) => telefone.getNumero === numTel
+                              );
+                            
+                              let confirmacao = this.entrada.receberTexto(
+                                `Deseja remover o telefone de numero: ${numTel}?: 1 para sim e 2 para não: `
+                              );
+                          
+                              if (confirmacao === "1") {
+                                cliente.getTelefones.splice(pegaTel, 1);
+                                console.log(`\nTelefone removido! :)`);
+                              } else if (confirmacao === "2") {
+                                console.log(`\nOperação cancelada. :)`);
+                              } else {
+                                console.log(`nOperação não entendida :(`);
+                              }
+                
+                        }
+
 
                         case 8:
                             execucao = false;

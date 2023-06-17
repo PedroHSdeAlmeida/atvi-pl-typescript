@@ -1,6 +1,6 @@
     import Entrada from "../io/entrada";
     import Telefone from "../modelo/telefone";
-    import {CadastroTelefone} from "./cadastroTelefone";
+    import CadastroTelefone from "./cadastroTelefone";
     import Cliente from "../modelo/cliente";
     import CPF from "../modelo/cpf";
     import Cadastro from "./cadastro";
