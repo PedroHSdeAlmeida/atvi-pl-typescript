@@ -32,7 +32,8 @@ export default class AtualizaCliente extends Atualizar{
                   console.log(`5 - Adicionar/Remover rg`);
                   console.log(`6 - Adicionar/Remover pet`);
                   console.log(`7 - Adicionar/Remover telefone`);
-                  console.log(`8 - Sair`);
+                  console.log(`8 - Remover cliente`);
+                  console.log(`9 - Sair`);
   
                   let opcao = this.entrada.receberNumero(`Por favor, escolha uma opção: `);
   
@@ -319,8 +320,22 @@ export default class AtualizaCliente extends Atualizar{
                 
                         }
 
-
                         case 8:
+                          let confirmacao = this.entrada.receberTexto(
+                            `Deseja remover o cliente de numero: ${cliente.getCpf.getValor}?: 1 para sim e 2 para não: `
+                          );
+                          if(confirmacao =='1') {
+                            const pegaPosicaoCliente = this.clientes.findIndex(
+                            (cpf) => cpf.getCpf.getValor === cliente.getCpf.getValor
+                            );
+                            this.clientes.splice(pegaPosicaoCliente, 1)
+                            console.log(`Cliente removido`)
+                          } else if (confirmacao === "2") {
+                            console.log(`\nOperação cancelada. :)`);
+                          } else {
+                            console.log(`nOperação não entendida :(`);
+                          }
+                        case 9:
                             execucao = false;
                             break;
                         

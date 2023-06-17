@@ -16,7 +16,7 @@ while (execucao) {
     console.log(`Opções:`);
     console.log(`1 - Cadastrar cliente`);
     console.log(`2 - Listar todos os clientes`);
-    console.log(`3 - Atualizar/deletar dados do cliente (Nome, nome soocial, telefone ou pets)`);
+    console.log(`3 - Atualizar/deletar dados do cliente (Nome, nome soocial, telefones, pets ou Rgs)`);
     console.log(`4 - cadastrar produto`);
     console.log(`5 - cadastrar servico`);
     console.log(`6 - listar produto`);
@@ -36,7 +36,7 @@ while (execucao) {
             listagem.listar()
             break;
         case 3:
-            let pegaCpf = entrada.receberTexto(`Por favor, digite o número do cpf do cliente que deseja atualizar: `)
+            let pegaCpf = entrada.receberTexto(`Por favor, digite o número do cpf do cliente que deseja atualizar/deletar: `)
             let atualizarCliente = new AtualizaCliente(empresa.getClientes)
             atualizarCliente.atualiza(pegaCpf)
             break
