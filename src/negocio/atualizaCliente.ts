@@ -2,6 +2,8 @@ import Entrada from "../io/entrada";
 import Cliente from "../modelo/cliente";
 import Atualizar from "./atualizar";
 import CadastroRg from "./cadastroRg";
+import CadastroPet from "./cadastroPet";
+import Pet from "../modelo/pet";
 import RG from "../modelo/rg";
 
 
@@ -185,6 +187,69 @@ export default class AtualizaCliente extends Atualizar{
                                   if (confirmacao === "1") {
                                     cliente.getRgs.splice(pegaRg, 1);
                                     console.log(`\nRg removido! :)`);
+                                  } else if (confirmacao === "2") {
+                                    console.log(`\nOperação cancelada. :)`);
+                                  } else {
+                                    console.log(`nOperação não entendida :(`);
+                                  }
+                    
+                            }
+
+                        case 6:
+
+                        console.log(`1 - Adicionar um ou mais pets`)
+                            console.log(`2 - Remover um ou mais pets`)
+                            let asw = this.entrada.receberNumero('Por favor, digite uma opção: ')
+                            if (asw === 1){
+                                let cadastroPet = new CadastroPet()
+                                let pets : Array<Pet> = cliente.getPets
+                                console.log(`\nDeseja cadastrar um pet? `)
+                                console.log(`\n1 - Para sim`);
+                                console.log(`2 - para não`);
+                                let p = 0
+                                while (p !== 2) {
+                                    p = this.entrada.receberNumero(`Por favor, digite uma opção: `);
+                                    switch (p) {
+                                        case 1:
+                                        cadastroPet.cadastraPet(pets)
+                                        console.log('deseja cadastrar outro pet?')
+                                        console.log(`1 - Para sim`);
+                                        console.log(`2 - para não`);
+                                        case 2:
+                                            break
+                                        default: 
+                                            console.log(`Operação não entendida :(`)
+                                    }
+                                }
+                    
+                                }
+                            else if (asw === 2) {
+                                console.log(`\nPets do cliente:`);
+                                if (cliente.getPets.length === 0) {
+                                    console.log (`\nNão possui pets cadastrados`)
+                                    break
+                                }
+                                cliente.getPets.forEach(pet => {
+                                    console.log(`\n Id do pet: ` + pet.getId)
+                                    console.log(` Nome: ` + pet.getNome);
+                                    console.log(` Tipo: ` + pet.getTipo);
+                                    console.log(` Raça: ` + pet.getRaca);
+                                    console.log(` Sexo: ` + pet.getSexo);
+                                });
+                                  let nomPet = this.entrada.receberTexto(
+                                    `Informe o nome do pet que deseja remover: `
+                                  );
+                                  const pegaPet = cliente.getPets.findIndex(
+                                    (pet) => pet.getNome === nomPet
+                                  );
+                                
+                                  let confirmacao = this.entrada.receberTexto(
+                                    `Deseja remover o pet: ${nomPet}?: 1 para sim e 2 para não: `
+                                  );
+                              
+                                  if (confirmacao === "1") {
+                                    cliente.getPets.splice(pegaPet, 1);
+                                    console.log(`\nPet removido! :)`);
                                   } else if (confirmacao === "2") {
                                     console.log(`\nOperação cancelada. :)`);
                                   } else {
