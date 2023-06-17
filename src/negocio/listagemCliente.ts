@@ -24,7 +24,7 @@ export default class ListagemClientes extends Listagem {
             }
             cliente.getTelefones.forEach(telefone => {
                 console.log(`ddd:` + telefone.getDdd)
-                console.log(`ddd:` + telefone.getNumero)
+                console.log(`numero:` + telefone.getNumero)
             })
 
             //Rgs

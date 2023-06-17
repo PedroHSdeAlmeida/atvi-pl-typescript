@@ -13,4 +13,8 @@ export default class Telefone {
     public get getNumero(): string {
         return this.numero
     }
+    public setNumero(novoddd: string, novoNumero: string): void {
+        this.ddd = novoddd
+        this.numero = novoNumero;
+    }
 }

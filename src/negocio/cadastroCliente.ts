@@ -76,7 +76,7 @@
                     case 1:
                         cadastroTelefone.cadastraTelefone(telefones);
                         console.log('\nDeseja cadastrar outro telefone?');
-                        console.log(`1 - Para sim`);
+                        console.log(`\n1 - Para sim`);
                         console.log(`2 - para não`);
                         break;
                     case 2:
