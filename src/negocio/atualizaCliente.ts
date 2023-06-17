@@ -1,6 +1,8 @@
 import Entrada from "../io/entrada";
 import Cliente from "../modelo/cliente";
 import Atualizar from "./atualizar";
+import CadastroRg from "./cadastroRg";
+import RG from "../modelo/rg";
 
 
 export default class AtualizaCliente extends Atualizar{
@@ -24,7 +26,10 @@ export default class AtualizaCliente extends Atualizar{
                   console.log(`2 - Atualizar Nome Social`);
                   console.log(`3 - Atualizar telefone`);
                   console.log(`4 - Atualizar pet`);
-                  console.log(`5 - Sair`);
+                  console.log(`5 - Adicionar/Remover rg`);
+                  console.log(`6 - Adicionar/Remover pet`);
+                  console.log(`7 - Adicionar/Remover telefone`);
+                  console.log(`8 - Sair`);
   
                   let opcao = this.entrada.receberNumero(`Por favor, escolha uma opção: `);
   
@@ -72,7 +77,7 @@ export default class AtualizaCliente extends Atualizar{
                         }
                  
                  //pets
-                 
+
                       case 4:
                         console.log(`\nPets de ${cliente.nome}: `)
                         if (cliente.getPets.length === 0) {
@@ -128,13 +133,73 @@ export default class AtualizaCliente extends Atualizar{
                             console.log(`Pet não encontrado`)
                             break
                         }
-                      case 5:
-                          execucao = false;
-                          break;
-  
-                      default:
-                          console.log(`Opção inválida.`);
-                          break;
+
+                        //Rg
+
+                        case 5:
+                            console.log(`1 - Adicionar um ou mais rgs`)
+                            console.log(`2 - Remover um ou mais rgs`)
+                            let resp = this.entrada.receberNumero('Por favor, digite uma opção: ')
+                            if (resp === 1){
+                                let cadastroRg = new CadastroRg()
+                                let rgs : Array<RG> = cliente.getRgs
+                                console.log(`\nDeseja cadastrar um rg? `)
+                                console.log(`\n1 - Para sim`);
+                                console.log(`2 - para não`);
+                                let r = 0
+                                while (r !== 2) {
+                                    r = this.entrada.receberNumero(`Por favor, digite uma opção: `);
+                                    switch (r) {
+                                        case 1:
+                                        cadastroRg.cadastraRg(rgs)
+                                        console.log('deseja cadastrar outro rg?')
+                                        console.log(`1 - Para sim`);
+                                        console.log(`2 - para não`);
+                                        case 2:
+                                            break
+                                        default: 
+                                            console.log(`Operação não entendida :(`)
+                                    }
+                                }
+                                }
+                            else if (resp === 2) {
+                                console.log(`\nRgs do cliente:`);
+                                if (cliente.getRgs.length === 0) {
+                                    console.log (`\nNão possui rgs cadastrados`)
+                                    break
+                                }
+                                cliente.getRgs.forEach(rg => {
+                                    console.log(`\n Rg: ` + rg.getValor);
+                                });
+                                let numRg = this.entrada.receberTexto(
+                                    `Informe o numero do rg que deseja remover: `
+                                  );
+                                  const pegaRg = cliente.getRgs.findIndex(
+                                    (rg) => rg.getValor === numRg
+                                  );
+                                
+                                  let confirmacao = this.entrada.receberTexto(
+                                    `Deseja remover o rg: ${numRg}?: 1 para sim e 2 para não: `
+                                  );
+                              
+                                  if (confirmacao === "1") {
+                                    cliente.getRgs.splice(pegaRg, 1);
+                                    console.log(`\nRg removido! :)`);
+                                  } else if (confirmacao === "2") {
+                                    console.log(`\nOperação cancelada. :)`);
+                                  } else {
+                                    console.log(`nOperação não entendida :(`);
+                                  }
+                    
+                            }
+
+                        case 8:
+                            execucao = false;
+                            break;
+                        
+                        default:
+                            console.log(`Opção inválida.`);
+                            break;
                   }
               }
             

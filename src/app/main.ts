@@ -12,7 +12,7 @@ while (execucao) {
     console.log(`Opções:`);
     console.log(`1 - Cadastrar cliente`);
     console.log(`2 - Listar todos os clientes`);
-    console.log(`3 - Atualizar dados do cliente (Nome, nome soocial, telefone ou pets)`);
+    console.log(`3 - Atualizar/deletar dados do cliente (Nome, nome soocial, telefone ou pets)`);
     console.log(`0 - Sair`);
 
     let entrada = new Entrada()
@@ -32,6 +32,8 @@ while (execucao) {
             let atualizarCliente = new AtualizaCliente(empresa.getClientes)
             atualizarCliente.atualiza(pegaCpf)
             break
+        case 4:
+        
         case 0:
             execucao = false
             console.log(`Até mais`)
